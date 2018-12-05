@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <!-- Page top section -->
+	<section class="page-top-section set-bg" data-setbg="{% static 'img/page-top-bg.jpg' %}">
+		<div class="container text-white">
+			<h3>스터디 그룹</h3>
+		</div>
+	</section>
+	<!--  Page top end -->
+
+
+	<!-- Search section -->
+	{% include 'partials/_search_form.html' %}
+	<!-- Search section end -->
+
+	
+
+	<!-- Courses section  -->
+	<section class="courses-section spad">
+		<div class="container">
+			<div class="sec-title text-center">
+				<span>Only the best</span>
+				
+				{% if queries %}					
+					<h2> Search for: 
+					{% for query in queries %}						
+						{% if query and query is not None %}
+							<div class="d-inline h5"> "{{ query }}"</div>	
+						{% endif %}								
+					{% endfor %}	
+					</h2>							
+				{% else %}
+					<h2>All Groups</h2>
+				{% endif %}
+				<p></p>
+				{% if user.is_authenticated and user.is_teacher %}
+					<a href="{% url 'groups:create' %}" class="btn btn-lg btn-outline-primary"><i class="fa fa-plus"></i> Create Your Group</a>
+				{% endif %}
+					
+			</div>
+			<div class="row courses-page">
+        <!-- course -->
+        
+        <!-- FETURED -->
+				<!-- <div class="col-lg-12">
+					<div class="course-item featured">
+						<div class="course-preview set-bg" data-setbg="img/courses/7.jpg">
+							<div class="price">$25</div>
+							<div class="featur-badges">Featured</div>	
+						</div>
+						<div class="course-content">
+							<div class="cc-text">
+								<h5>Italian for Begginers & Advanced Course</h5>
+								<p>Donec molestie tincidunt tellus sit amet aliquet. Proin auctor nisi ut purus eleifend, et auctor lorem hendrerit. Proin vitae tortor nec risus tristique efficitur. Aliquam luctus est urna, id aliquam orci tempus sed. Aenean sit amet leo id enim dapibus eleifend. Phasellus ut erat dapibus, tempor sapien non, porta urna. Cras quis ante nibh. Proin tincidunt gravida interdum. Proin sed urna mauris. In molestie quis risus commodo gravida. </p>
+								<span><i class="flaticon-student-2"></i>20</span>
+								<span><i class="flaticon-placeholder"></i>3</span>
+								<div class="rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star i-fade"></i>
+								</div>
+							</div>
+							<div class="seller-info">
+								<div class="seller-pic set-bg" data-setbg="img/courses/sellers/1.jpg"></div>
+								<h6>By Sebastian Smith, <span>Italian Teacher</span></h6>
+							</div>
+						</div>
+					</div>
+        </div> -->
+        
+        <!-- course -->
+        
+        {% for group in group_list %}
+          <div class="col-lg-4 col-md-6">
+            <div class="course-item">
+							<a href="{{ group.get_absolute_url }}">
+								<figure class="course-preview">
+									<div class="img-wrapper">
+										<img src="{{ group.photo.url }}" alt="">
+									</div>
+									<div class="price">
+										{% if group.price == 'Free' %}
+											{{ group.price }}											
+										{% else %}
+											{{ group.price }}만원
+										{% endif %}
+									</div>
+									<div class="level">
+										{{ group.level }}											
+									</div>
+									<div class="location">
+										{{ group.location }}											
+									</div>
+								</figure>
+                <div class="course-content">
+                  <div class="cc-text text-center">
+										<h4 class="mb-3 course-name">{{ group.name }}</h4>
+										<p><strong>시작일: {{ group.start_date|date:"y년 m월 d일" }}</strong></p>
+										<span>{{ group.day }} | {{ group.time }}</span><br>
+                    <!-- <p class="text-truncate">{{ group.description }}</p> -->
+                    <span><i class="flaticon-student-2"></i> {{ group.members.all.count }} / {{ group.size }}</span>
+                    <!-- <span><i class="flaticon-learning"></i>3</span> -->
+                  </div>
+                  <div class="seller-info">
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star i-fade"></i>
+												</div>
+                    <div class="seller-pic set-bg" data-setbg="{% if group.leader.profile.profile_picture %} {{ group.leader.profile.profile_picture.url }} {% endif %}"></div>
+                    <h6>By {{ group.leader.name }}</h6>
+                  </div>
+                </div>
+
+              </a>
+            </div>
+          </div>
+          
+        {% endfor %}
+          
+				
+				<!-- FEATURED2 -->
+				<!-- <div class="col-lg-12">
+					<div class="course-item featured-2">
+						<div class="row">
+							<div class="col-lg-4 p-0">
+								<div class="course-preview set-bg" data-setbg="img/courses/8.jpg">
+									<div class="price">$25</div>
+								</div>
+							</div>
+							<div class="col-lg-8 p-0">
+								<div class="course-content">
+									<div class="cc-text">
+										<h5>HTML5  for Begginers & Advanced Course</h5>
+										<p>Donec molestie tincidunt tellus sit amet aliquet. Proin auctor nisi ut purus eleifend, et auctor lorem hendrerit. Proin vitae tortor nec risus tristique efficitur. Aliquam luctus est urna, id aliquam orci tempus sed. Aenean sit amet leo id enim dapibus eleifend. Phasellus ut erat dapibus, </p>
+										<span><i class="flaticon-student-2"></i>20</span>
+										<span><i class="flaticon-placeholder"></i>3</span>
+										<div class="rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star i-fade"></i>
+										</div>
+									</div>
+									<div class="seller-info">
+										<div class="seller-pic set-bg" data-setbg="img/courses/sellers/3.jpg"></div>
+										<h6>By Jack Smith, <span>Photographer</span></h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+        </div> -->
+        
+			</div>
+			<!-- <div class="text-center pt-2">
+				<button class="site-btn">Load More <i class="fa fa-angle-right"></i></button>
+			</div> -->
+			<div class="row">
+				<div class="col-md-12">
+					{% if page_obj.has_other_pages %}
+					<ul class="pagination justify-content-center">
+						{% if page_obj.has_previous %}
+						<li class="page-item">
+							<a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<a class="page-link">&laquo;</a>
+						</li>
+						{% endif %}
+						{% for i in page_obj.paginator.page_range %}
+						{% if page_obj.number == i %}
+						<li class="page-item active">
+							<a class="page-link">{{ i }}</a>
+						</li>
+						{% else %}
+						<li class="page-item">
+							<a href="?page={{ i }}" class="page-link">{{ i }}</a>
+						</li>
+						{% endif %}
+						{% endfor %}
+						{% if page_obj.has_next %}
+						<li class="page-item">
+							<a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<a class="page-link">&raquo;</a>
+						</li>
+						{% endif %}
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Courses section end -->
+
+{% endblock content %}
+  

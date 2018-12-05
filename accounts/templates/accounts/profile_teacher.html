@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section id="group-list">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          
+          <h1>My Groups</h1>
+          <ul>
+          {% for group in groups %}
+            <li>
+              <h4><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></h4>
+              {% for member in group.members.all %}
+                <p>{{ member.username }}: {{ member.email }}</p>
+              {% endfor %}
+            </li>
+            
+                          
+          {% endfor %}
+          </ul>
+            
+
+
+          
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+  

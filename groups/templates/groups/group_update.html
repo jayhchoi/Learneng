@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<!-- Hero section -->
+	<section id="signup-section" class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-7 mx-auto">
+					<div class="hero-text text-white">
+          <h2>Update your group</h2>
+          <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <input type="submit" value="Save">
+            </form>
+				</div>
+				</div>
+			</div>
+		</div>
+	</section>
+  <!-- Hero section end -->
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+<!-- Header section -->
+{% load static %}
+<header class="header-section">
+  <div class="header-warp">
+    <div class="container">
+      <a href="{% url 'pages:home' %}" class="site-logo">
+        <img src="{% static 'img/logo.png' %}" alt="">
+      </a>
+      <div class="user-panel">
+        {% if user.is_authenticated %}
+        {% if user.is_teacher %}
+          <a href="{% url 'accounts:teacher_profile' %}"><i class="fas fa-user"></i>  {{ request.user.name }}</a>
+        {% else %}
+          <a href="{% url 'accounts:student_profile' %}"><i class="fas fa-user"></i>  {{ request.user.name }}</a>
+        {% endif %}          
+        <span>/</span>
+        <a href="{% url 'pages:logout' %}">로그아웃</a>
+        {% else %}  
+        <a href="{% url 'pages:login' %}">로그인</a>
+        <span>/</span>
+        <a href="{% url 'pages:signup' %}">회원가입</a>
+        {% endif %}          
+      </div>
+      <div class="nav-switch">
+        <i class="fa fa-bars"></i>
+      </div>
+      <ul class="main-menu">
+        <!-- <li><a href="{% url 'pages:home' %}">홈</a></li> -->
+        <li><a href="{% url 'pages:about' %}">About 런잉</a></li>
+        <li><a href="{% url 'groups:list' %}">스터디 그룹</a></li>
+        <!-- <li><a href="blog.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li> -->
+      </ul>
+    </div>
+  </div>
+</header>
+<!-- Header section end -->

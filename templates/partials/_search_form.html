@@ -1,0 +1,21 @@
+<section class="multi-search-section">
+  <div class="msf-warp">
+    <div class="container">
+      <h5>스터디그룹 검색하기</h5>
+      <form class="multi-search-form" action="{% url 'search:query' %}">
+        <input type="text" name="group" placeholder="Group">
+        <!-- <input type="text" name="level" placeholder="Level"> -->
+        <select name="level">
+          <option selected="true" disabled>레벨</option>
+          <option value="초급">초급</option>
+          <option value="중급">중급</option>
+          <option value="고급">고급</option>
+        </select>
+        <input type="date" name="date">
+        <input type="text" name="teacher" placeholder="Teacher">
+        <input type="text" name="location" placeholder="Location">
+        <button class="site-btn">검색 <i class="fa fa-angle-right"></i></button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  
+	<!-- Hero section -->
+	<section class="hero-section set-bg" data-setbg="{% static 'img/bg-home.jpg' %}">
+		<div class="bg-overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9">
+						<div class="hero-text text-white">
+						<h2>Learn & Teach English</h2>
+						<h4>LearnEng은 영어회화 스터디 매칭 <strong>무료</strong> 플랫폼입니다. </h4>
+						<a href="{% url 'pages:about' %}" class="site-btn">더 알아보기 <i class="fa fa-angle-right"></i></a>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+
+	<!-- Search section -->
+	{% include 'partials/_search_form.html' %}
+	<!-- Search section end -->
+
+
+	<!-- Services section -->
+	<!-- <section class="services-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6 service-item">
+					<div class="si-icon">
+						<i class="flaticon-apple"></i>
+					</div>
+					<div class="si-content">
+						<h5>Training Center</h5>
+						<p>Donec molestie tincidunt tellus sit amet aliquet. Proin auctor nisi ut purus ele ifend, et auctor lorem hendrerit. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 service-item">
+					<div class="si-icon">
+						<i class="flaticon-mortarboard"></i>
+					</div>
+					<div class="si-content">
+						<h5>Training Center</h5>
+						<p>Donec molestie tincidunt tellus sit amet aliquet. Proin auctor nisi ut purus ele ifend, et auctor lorem hendrerit. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 service-item">
+					<div class="si-icon">
+						<i class="flaticon-idea"></i>
+					</div>
+					<div class="si-content">
+						<h5>Training Center</h5>
+						<p>Donec molestie tincidunt tellus sit amet aliquet. Proin auctor nisi ut purus ele ifend, et auctor lorem hendrerit. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 service-item">
+					<div class="si-icon">
+						<i class="flaticon-medal"></i>
+					</div>
+					<div class="si-content">
+						<h5>Training Center</h5>
+						<p>Donec molestie tincidunt tellus sit amet aliquet. Proin auctor nisi ut purus ele ifend, et auctor lorem hendrerit. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 service-item">
+					<div class="si-icon">
+						<i class="flaticon-question"></i>
+					</div>
+					<div class="si-content">
+						<h5>Training Center</h5>
+						<p>Donec molestie tincidunt tellus sit amet aliquet. Proin auctor nisi ut purus ele ifend, et auctor lorem hendrerit. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 service-item">
+					<div class="si-icon">
+						<i class="flaticon-learning"></i>
+					</div>
+					<div class="si-content">
+						<h5>Training Center</h5>
+						<p>Donec molestie tincidunt tellus sit amet aliquet. Proin auctor nisi ut purus ele ifend, et auctor lorem hendrerit. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> -->
+	<!-- Services section end -->
+
+
+	<!-- Review section -->
+	<!-- <section class="review-section spad set-bg" data-setbg="{% static 'img/review-bg.jpg' %}">
+		<div class="container">
+			<div class="sec-title text-center text-white">
+				<span>our students</span>
+				<h2>Testimonials</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="review-slider owl-carousel text-white">
+					<div class="rs-item">
+						<div class="quota">“</div>
+						<h5>It helped me so much</h5>
+						<p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna. Etiam nec odio vestibulum est mat tis effic iturut magna vestibulum est mat tis effic iturut magna.</p>
+						<div class="review-avator set-bg" data-setbg="{% static 'img/review-avator.jpg' %}"></div>
+						<h6><span>Daiane Smith,</span> Student</h6>
+					</div>
+					<div class="rs-item">
+						<div class="quota">“</div>
+						<h5>It helped me so much</h5>
+						<p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna. Etiam nec odio vestibulum est mat tis effic iturut magna vestibulum est mat tis effic iturut magna.</p>
+						<div class="review-avator set-bg" data-setbg="{% static 'img/review-avator.jpg' %}"></div>
+						<h6><span>Daiane Smith,</span> Student</h6>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</section> -->
+	<!-- Review section end -->
+
+
+	<!-- Courses section  -->
+	<section class="courses-section spad bg-light">
+		<div class="container">
+			<div class="sec-title text-center">
+				<span>Only  the best</span>
+				<h2>New Groups</h2>
+			</div>
+			<div class="course-slider owl-carousel">
+				<!-- course -->
+
+				{% for group in groups|slice:":9" %}
+				<div class="col">
+					<div class="course-item">
+						<a href="{{ group.get_absolute_url }}">
+							<figure class="course-preview">
+								<div class="img-wrapper">
+									<img src="{{ group.photo.url }}" alt="">
+								</div>
+								<div class="price">
+									{% if group.price == 'Free' %}
+										{{ group.price }}											
+									{% else %}
+										{{ group.price }}만원
+									{% endif %}
+								</div>
+								<div class="level">
+									{{ group.level }}											
+								</div>
+								<div class="location">
+									{{ group.location }}											
+								</div>
+							</figure>
+							<div class="course-content">
+								<div class="cc-text text-center">
+									<h4 class="mb-3 course-name">{{ group.name }}</h4>
+									<p><strong>시작일: {{ group.start_date|date:"y년 m월 d일" }}</strong></p>
+									<span>{{ group.day }} | {{ group.time }}</span><br>
+									<!-- <p class="text-truncate">{{ group.description }}</p> -->
+									<span><i class="flaticon-student-2"></i> {{ group.members.all.count }} / {{ group.size }}</span>
+									<!-- <span><i class="flaticon-learning"></i>3</span> -->
+								</div>
+								<div class="seller-info">
+											<div class="rating">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star i-fade"></i>
+											</div>
+									<div class="seller-pic set-bg" data-setbg="{% if group.leader.profile.profile_picture %} {{ group.leader.profile.profile_picture.url }} {% endif %}"></div>
+									<h6>By {{ group.leader.name }}</h6>
+								</div>
+							</div>
+
+						</a>
+					</div>          
+
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Courses section end -->
+
+
+
+	<!-- Fact section -->
+	<section class="fact-section spad">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-lg-4 col-sm-6 fact-item">
+					<figure>
+						<img src="{% static 'img/icons/2.png' %}" alt="">
+					</figure>
+					<h2>{{ members.count }}</h2>
+					<p>Members</p>
+				</div>
+				<div class="col-lg-4 col-sm-6 fact-item">
+					<figure>
+						<img src="{% static 'img/icons/3.png' %}" alt="">
+					</figure>
+					<h2>{{ leaders.count }}</h2>
+					<p>Leaders</p>
+				</div>
+				<div class="col-lg-4 col-sm-6 mx-auto fact-item">
+					<figure>
+						<img src="{% static 'img/icons/1.png' %}" alt="">
+					</figure>
+					<h2>{{ groups.count }}</h2>
+					<p>Groups</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Fact section end -->
+
+
+	<!-- Newslatter section -->
+	<section class="newslatter-section set-bg" data-setbg="{% static 'img/newslatter-bg.jpg' %}">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="sec-title text-white sec-style-2">
+						<span>Newsletter</span>
+						<h2>Stay updated</h2>
+					</div>
+				</div>
+
+				<div class="col-lg-9 nl-form-warp">
+					<form class="newslatter-form">
+						<input type="text" placeholder="Your E-mail">
+						<button class="site-btn">Subscribe <i class="fa fa-angle-right"></i></button>
+					</form>
+					<p>*Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Newslatter section end -->
+
+{% endblock content %}

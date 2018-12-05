@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<!-- Hero section -->
+	<section id="signup-section" class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-7 mx-auto">
+					<div class="hero-text text-white">
+          <h2>Delete your group?</h2>
+          <form method="post">
+              {% csrf_token %}
+              <input type="submit" value="Confirm">
+            </form>
+				</div>
+				</div>
+			</div>
+		</div>
+	</section>
+  <!-- Hero section end -->
+
+{% endblock content %}
