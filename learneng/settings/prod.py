@@ -115,8 +115,8 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = 'pages:home'
 LOGOUT_REDIRECT_URL = 'pages:home'
 
-LOGIN_URL = 'pages:login'
-LOGOUT_URL = 'pages:logout'
+LOGIN_URL = 'accounts:login'
+LOGOUT_URL = 'accounts:logout'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

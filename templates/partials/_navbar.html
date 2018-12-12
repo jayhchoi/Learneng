@@ -27,10 +27,10 @@
           class="nav-item mr-3"
           {% endif %}
         >
-          <a class="nav-link" href="{% url 'groups:list' %}">스터디 그룹</a>
+          <a class="nav-link" href="{% url 'groups:list' %}">스터디</a>
         </li>
         
-        {% if request.user.is_teacher == True %}
+        {% if request.user.is_leader == True %}
           <li class="nav-item mr-3">
             <a class="nav-link" href="{% url 'groups:create' %}">내 스터디 만들기 <i class="fas fa-plus"></i></a>
           </li>          
@@ -45,14 +45,16 @@
               {{ user.name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {% if user.is_teacher %}
-              <a class="dropdown-item" href="{% url 'accounts:teacher_profile' %}">내 스터디 그룹</a>
+              {% if user.is_leader %}
+              <a class="dropdown-item" href="{% url 'accounts:leader_group' %}">내 스터디</a>
+              {% elif user.is_member %}
+              <a class="dropdown-item" href="{% url 'accounts:member_group' %}">내 스터디</a>
               {% endif %}
-              <a class="dropdown-item" href="#">설정</a>
+              <a class="dropdown-item" href="#">프로필</a>
             </div>
           </li>
           <li class="nav-item mr-3">
-            <a href="{% url 'pages:logout' %}" class="nav-link">
+            <a href="{% url 'accounts:logout' %}" class="nav-link">
               <i class="fas fa-sign-out-alt"></i> 로그아웃
             </a>
           </li>
@@ -64,7 +66,7 @@
             class="nav-item mr-3"
             {% endif %}
           >
-            <a class="nav-link" href="{% url 'pages:signup' %}">
+            <a class="nav-link" href="{% url 'accounts:signup' %}">
               <i class="fas fa-user-plus"></i> 회원가입</a>
           </li>
           <li
@@ -74,7 +76,7 @@
             class="nav-item mr-3"
             {% endif %}
           >
-            <a class="nav-link" href="{% url 'pages:login' %}">
+            <a class="nav-link" href="{% url 'accounts:login' %}">
               <i class="fas fa-sign-in-alt"></i>
 
               로그인</a>

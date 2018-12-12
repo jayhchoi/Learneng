@@ -48,7 +48,7 @@
 						<a href="{% url 'groups:delete' pk=group.pk %}" class="float-right btn btn-danger mb-4">삭제하기</a>	
 					</div>
 				{% else %}
-					{% if request.user.is_student %}
+					{% if request.user.is_member %}
 						{% if request.user not in group.members.all %}
 							<a href="{% url 'groups:join' pk=group.pk %}" class="float-right btn btn-primary mb-4">참여하기</a>										
 						{% else %}
@@ -128,21 +128,23 @@
       <div class="col-md-4">
         <div class="card mb-3">
 					<div class="card-header">리더 프로필</div>
-          <img class="card-img-top" src="{{ group.leader.profile.profile_picture.url }}" alt="">
+          <img class="card-img-top" src="{{ group.leader.profile.photo.url }}" alt="">
           <div class="card-body">
             <h5 class="card-title"></h5>
 						<h6 class="text-secondary">{{ group.leader.name }}</h6>
 						<p class="card-text">{{ group.leader.profile.bio }}</p>
           </div>
         </div>
-        <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">질문하기</button>
+        <!-- <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">질문하기</button> -->
       </div>
     </div>
   </div>
 </section>
 
+{% comment %}
+	
 <!-- Inquiry Modal -->
-<div class="modal fade" id="inquiryModal" role="dialog">
+<!-- <div class="modal fade" id="inquiryModal" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -189,135 +191,8 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+{% endcomment %}
+	
 
 {% endblock %}
-
-	
-	<!-- About section -->
-	<section class="blog-section spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 mx-auto">
-					<!-- Blog item -->
-					<div class="blog-item">
-						<div class="blog-thumb set-bg" data-setbg="{{ group.photo.url }}">
-							<div class="blog-date">
-								<h4 class="text-white">{{ group.start_date }}</h2>
-								<!-- <span>{{ group.start_date }}</span> -->
-								<!-- <span>2018</span> -->
-							</div>
-						</div>
-						<div class="blog-content">
-							<div class="blog-tag">
-								<a>Level: {{ group.level }}</a>
-							</div>
-							<h3>{{ group.name }} 
-								{% if group.leader == request.user %}
-									<div class="btn-group float-right">
-										<a href="{% url 'groups:update' pk=group.pk %}" class="btn btn-outline-success">Update</a>	
-										<a href="{% url 'groups:delete' pk=group.pk %}" class="btn btn-outline-danger">Delete</a>	
-									</div>
-								{% else %}									
-									{% if request.user not in group.members.all %}
-										<a href="{% url 'groups:join' pk=group.pk %}" class="float-right btn btn-outline-primary">Join</a>										
-									{% else %}
-										<a href="{% url 'groups:leave' pk=group.pk %}" class="float-right btn btn-outline-primary">Leave</a>										
-									{% endif %}										
-								{% endif %}
-							</h3>
-							
-							<div class="blog-meta">
-								<a href=""><span>By</span> {{ group.leader.name }}</a>|
-								<a>{{ group.location }}</a>|
-								<a>{{ group.duration }}주</a>|
-								<a>{{ group.price }}만원</a>|
-								<a><i class="flaticon-student-2"></i> {{ group.members.all.count }} / {{ group.size }}명</a>|
-								<!-- <a>{{ group.comments.all.count }} Comments</a>   -->
-							</div>
-							<p>{{ group.description }}</p>
-						</div>
-					</div>
-					
-					{% if group.leader.comment_to %}
-						<h5 class="widget-title">Reviews</h5>						
-						{% for cmt in group.leader.comment_to.all %}
-							<hr>
-							<div class="media">
-								<div class="media-body">
-									<div class="m-0">
-										<span>{{ cmt.user }}</span>
-										
-										<div class="rating">																							
-											{% with ''|center:cmt.rating as range %}
-												{% for _ in range %}
-												<i class="fa fa-star"></i>
-												<!-- <i class="fa fa-star i-fade"></i>													 -->
-												{% endfor %}
-											{% endwith %}																								
-											<!-- <i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star i-fade"></i> -->
-										</div>									
-									</div>
-									<p class="p-2">{{ cmt.content }}</p>
-								</div>
-							</div>							
-						{% endfor %}							
-					{% endif %}
-						
-
-				</div>
-				<!-- sidebar -->
-				<!-- <div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
-					<div class="widget">
-						<form class="search-form">
-							<input type="text" placeholder="Search">
-							<button><i class="fa fa-search"></i></button>
-						</form>
-					</div>
-					<div class="widget">
-						<h3 class="widget-title">Categories</h3>
-						<ul>
-							<li><a href="#">Books<span>(9)</span></a></li>
-							<li><a href="#">Events<span>(6)</span></a></li>
-							<li><a href="#">Courses<span>(6)</span></a></li>
-							<li><a href="#">Teachers<span>(7)</span></a></li>
-							<li><a href="#">Music<span>(33)</span></a></li>
-							<li><a href="#">Uncategorized<span>(7)</span></a></li>
-							<li><a href="#">School<span>(6)</span></a></li>
-						</ul>
-					</div>
-					<div class="widget">
-						<h3 class="widget-title">Latest News</h3>
-						<div class="latest-blog">
-							<div class="lb-item">
-								<div class="lb-thumb set-bg" data-setbg="img/courses/1.jpg"></div>
-								<div class="lb-content">
-									<h5>New School programs</h5>
-									<p>14.05.18<span>312 Views</span></p>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg" data-setbg="img/courses/2.jpg"></div>
-								<div class="lb-content">
-									<h5>A close look at our courses</h5>
-									<p>14.05.18<span>312 Views</span></p>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg" data-setbg="img/courses/6.jpg"></div>
-								<div class="lb-content">
-									<h5>New School programs</h5>
-									<p>14.05.18<span>312 Views</span></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
-			</div>
-		</div>
-	</section>
-	<!-- About section end -->

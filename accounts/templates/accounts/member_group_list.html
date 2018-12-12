@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  | 내 스터디
+{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'pages:home' %}">
+            <i class="fas fa-home"></i> 홈</a>
+        </li>
+        <li class="breadcrumb-item active"> 내 스터디</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section id="about" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 mx-auto">
+        <h2>참여 중인 스터디</h2>
+        <hr>
+        
+        {% if groups %}
+        <div class="accordion" id="accordionExample">
+        {% for group in groups %}
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">스터디</th>
+                <th scope="col">리더</th>
+                <th scope="col">시작일</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></td>
+                <td>{{ group.leader.name }}</td>
+                <td>{{ group.start_date }}</td>
+              </tr>
+            </tbody>
+          </table>
+              
+        {% endfor %}
+            </div>
+        {% else %}
+          <p>현재 참여 중인 스터디가 없습니다.</p>
+        {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

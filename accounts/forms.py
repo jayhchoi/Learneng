@@ -22,7 +22,7 @@ class SignupForm(UserCreationForm):
 
     # def save(self, commit=True):
     #     user = super().save(commit=False)
-    #     user.is_student = True
+    #     user.is_member = True
     #     if commit:
     #         user.save()
     #     return user

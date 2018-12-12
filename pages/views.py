@@ -12,8 +12,8 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         groups = Group.objects.order_by('-id')
         context['groups'] = groups
-        context['members'] = get_user_model().objects.filter(is_student=True)
-        context['leaders'] = get_user_model().objects.filter(is_teacher=True)
+        context['members'] = get_user_model().objects.filter(is_member=True)
+        context['leaders'] = get_user_model().objects.filter(is_leader=True)
         return context
     
 

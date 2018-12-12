@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  | 프로필
+  | 내 스터디
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
           <a href="{% url 'pages:home' %}">
             <i class="fas fa-home"></i> 홈</a>
         </li>
-        <li class="breadcrumb-item active"> 프로필</li>
+        <li class="breadcrumb-item active"> 내 스터디</li>
       </ol>
     </nav>
   </div>
@@ -26,7 +26,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 mx-auto">
-        <h2>내 스터디 그룹</h2>
+        <h2>리드 중인 스터디</h2>
         <hr>
         
         {% if groups %}
@@ -85,30 +85,3 @@
 </section>
 
 {% endblock %}
-
-
-{% comment %}
-<section id="group-list">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <h1>My Groups</h1>
-          <ul>
-            {% for group in groups %}
-            <li>
-              <h4>
-                <a href="{{ group.get_absolute_url }}">{{ group.name }}</a>
-              </h4>
-              {% for member in group.members.all %}
-              <p>{{ member.username }}: {{ member.email }}</p>
-              {% endfor %}
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-{% endcomment %}
-  

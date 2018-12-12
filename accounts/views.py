@@ -14,12 +14,12 @@ from .forms import SignupForm
 User = get_user_model()
 
 
-class TeacherProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'accounts/profile_teacher.html'
+class LeaderGroupListView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/leader_group_list.html'
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
-        if not request.user.is_teacher:
+        if not request.user.is_leader:
             return redirect('pages:home')
         return self.render_to_response(context)
 
@@ -29,12 +29,12 @@ class TeacherProfileView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class StudentProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'accounts/profile_student.html'
+class MemberGroupListView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/member_group_list.html'
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
-        if not request.user.is_student:
+        if not request.user.is_member:
             return redirect('pages:home')
         return self.render_to_response(context)
 
@@ -48,27 +48,27 @@ class SignupView(TemplateView):
     template_name = 'accounts/signup.html'
 
 
-class TeacherSignupView(CreateView):
+class LeaderSignupView(CreateView):
     model = User
     form_class = SignupForm
-    template_name = 'accounts/signup_teacher.html'
+    template_name = 'accounts/leader_signup.html'
 
     def form_valid(self, form):
         user = form.save()  # creates a user instance by using the input of the form
-        user.is_teacher = True
+        user.is_leader = True
         user.save()
         login(self.request, user)
         return redirect('pages:home')
 
 
-class StudentSignupView(CreateView):
+class MemberSignupView(CreateView):
     model = User
     form_class = SignupForm
-    template_name = 'accounts/signup_student.html'
+    template_name = 'accounts/member_signup.html'
 
     def form_valid(self, form):
         user = form.save()  # creates a user instance by using the input of the form
-        user.is_student = True
+        user.is_member = True
         user.save()
         login(self.request, user)
         return redirect('pages:home')

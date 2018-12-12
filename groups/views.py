@@ -42,7 +42,7 @@ class GroupCreateView(LoginRequiredMixin, CreateView):
     def get(self, request, *args, **kwargs):
         self.object = None
         # Check if the user is teacher
-        if request.user.is_teacher == False:
+        if request.user.is_leader == False:
             messages.warning(request, "스터디 개설은 리더만 가능합니다.")
             return redirect('pages:home')
         return super().get(request, *args, **kwargs)
