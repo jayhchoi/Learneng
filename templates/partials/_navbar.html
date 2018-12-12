@@ -1,37 +1,92 @@
-<!-- Header section -->
 {% load static %}
-<header class="header-section">
-  <div class="header-warp">
-    <div class="container">
-      <a href="{% url 'pages:home' %}" class="site-logo">
-        <img src="{% static 'img/logo.png' %}" alt="">
-      </a>
-      <div class="user-panel">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'pages:home' %}">
+      <i class="fas fa-school"></i>
+      <img src="{% static 'img/logo.png' %}" class="logo mr-3" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav">
+        <li
+          {% if 'about' in request.path %}
+          class="nav-item active mr-3"
+          {% else %}
+          class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'pages:about' %}">소개</a>
+        </li>
+        <li
+          {% if 'groups' in request.path %}
+          class="nav-item active mr-3"
+          {% else %}
+          class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'groups:list' %}">스터디 그룹</a>
+        </li>
+        
+        {% if request.user.is_teacher == True %}
+          <li class="nav-item mr-3">
+            <a class="nav-link" href="{% url 'groups:create' %}">내 스터디 만들기 <i class="fas fa-plus"></i></a>
+          </li>          
+        {% endif %}
+          
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
-        {% if user.is_teacher %}
-          <a href="{% url 'accounts:teacher_profile' %}"><i class="fas fa-user"></i>  {{ request.user.name }}</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% if user.is_teacher %}
+              <a class="dropdown-item" href="{% url 'accounts:teacher_profile' %}">내 스터디 그룹</a>
+              {% endif %}
+              <a class="dropdown-item" href="#">설정</a>
+            </div>
+          </li>
+          <li class="nav-item mr-3">
+            <a href="{% url 'pages:logout' %}" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i> 로그아웃
+            </a>
+          </li>
+          <li class="nav-item mr-3">
+            <a href="{% url 'pinax_messages:inbox' %}" class="nav-link">
+              <i class="fas fa-envelope"></i> 메세지
+            </a>
+          </li>
         {% else %}
-          <a href="{% url 'accounts:student_profile' %}"><i class="fas fa-user"></i>  {{ request.user.name }}</a>
-        {% endif %}          
-        <span>/</span>
-        <a href="{% url 'pages:logout' %}">로그아웃</a>
-        {% else %}  
-        <a href="{% url 'pages:login' %}">로그인</a>
-        <span>/</span>
-        <a href="{% url 'pages:signup' %}">회원가입</a>
-        {% endif %}          
-      </div>
-      <div class="nav-switch">
-        <i class="fa fa-bars"></i>
-      </div>
-      <ul class="main-menu">
-        <!-- <li><a href="{% url 'pages:home' %}">홈</a></li> -->
-        <li><a href="{% url 'pages:about' %}">About 런잉</a></li>
-        <li><a href="{% url 'groups:list' %}">스터디 그룹</a></li>
-        <!-- <li><a href="blog.html">News</a></li>
-        <li><a href="contact.html">Contact</a></li> -->
+          <li
+            {% if 'register' in request.path %}
+            class="nav-item active mr-3"
+            {% else %}
+            class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'pages:signup' %}">
+              <i class="fas fa-user-plus"></i> 회원가입</a>
+          </li>
+          <li
+            {% if 'login' in request.path %}
+            class="nav-item active mr-3"
+            {% else %}
+            class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'pages:login' %}">
+              <i class="fas fa-sign-in-alt"></i>
+
+              로그인</a>
+          </li>
+        {% endif %}
+        
       </ul>
     </div>
   </div>
-</header>
-<!-- Header section end -->
+</nav>

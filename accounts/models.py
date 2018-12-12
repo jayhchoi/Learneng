@@ -8,8 +8,9 @@ from django.dispatch import receiver
 class User(AbstractUser):
     is_student = models.BooleanField(_('student'), default=False)
     is_teacher = models.BooleanField(_('teacher'), default=False)
-    email = models.EmailField(_('email address')) ## <--- change this to unique=True before production!!!
+    email = models.EmailField(_('email address'), unique=False) # set to true later
     name = models.CharField(_('full name'), max_length=30)
+    contact = models.CharField(_('contact'), null=True, blank=True, max_length=120)
 
 
 class Profile(models.Model):

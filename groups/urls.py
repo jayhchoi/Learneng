@@ -8,6 +8,7 @@ from .views import (
     GroupDeleteView,
     group_join_view,
     group_leave_view,
+    # email_view
 )
 
 app_name = 'groups'
@@ -19,4 +20,5 @@ urlpatterns = [
     path('<int:pk>/join/', group_join_view, name='join'),
     path('<int:pk>/leave/', group_leave_view, name='leave'),
     path('create/', GroupCreateView.as_view(), name='create'),
+    # path('email/', email_view, name='email'),
 ]

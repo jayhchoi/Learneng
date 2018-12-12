@@ -1,22 +1,50 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% load static %}
-{% block content %}
-	<!-- Hero section -->
-	<section id="signup-section" class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-7 mx-auto">
-					<div class="hero-text text-white">
-          <h2>Join the group?</h2>
-          <form method="post">
-            {% csrf_token %}
-            <input type="submit" value="Confirm">
-          </form>
-				</div>
-				</div>
-			</div>
-		</div>
-	</section>
-  <!-- Hero section end -->
+{% load crispy_forms_tags %}
+{% block title %}
+  | 그룹 참여하기
+{% endblock %}
 
-{% endblock content %}
+{% block content %}
+
+<section id="login" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-sign-in-alt"></i> 스터디 참여하기</h4>
+          </div>
+          <div class="card-body">
+            <!-- Alerts -->
+            {% include 'partials/_alerts.html' %}
+            <div class="card bg-light mb-3">
+              <div class="card-header"><strong>{{ group.location }}</strong>에서 진행되는 <strong>{{ group.leader.name }}</strong>님의 <strong>{{ group.level }}</strong> 영어회화 스터디!</div>
+              <img src="{{ group.photo.url }}" alt="" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{ group.name }}</h5>
+                <p class="card-text">
+                  시작일: {{ group.start_date }} <br>
+                  요일: 매주 {{ group.day }} <br>
+                  기간: {{ group.duration }} <br>
+                  참가비: {% if group.price == 0 %}무료{% else %}{{ group.price }}만원{% endif %}
+                </p>
+              </div>
+              <div class="card-footer">참여를 확정하시면, 입력해주신 연락처로 리더님이 직접 스터디 안내를 드립니다.</div>
+            </div>
+						<form method="post">
+							{% csrf_token %}
+							<div class="form-group">
+								<label for="contact" class="col-form-label requiredField">연락처*</label>
+								<input type="text" name="contact" id="contact-input" class="form-control" placeholder="전화번호나 카톡ID 등 연락가능한 연락처를 입력해주세요" required>
+							</div>
+							<button type="submit" class="btn btn-secondary btn-block">학인</button>
+						</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -27,11 +27,11 @@ class SearchGroupView(ListView):
                     level__iexact=level)
 
         # Start date
-        if 'date' in self.request.GET:
-            date = self.request.GET.get('date')
-            if date:
+        if 'start_date' in self.request.GET:
+            start_date = self.request.GET.get('start_date')
+            if start_date:
                 queryset = queryset.filter(
-                    start_date__gte=date)
+                    start_date__gte=start_date)
 
         # teacher
         if 'teacher' in self.request.GET:
@@ -40,12 +40,19 @@ class SearchGroupView(ListView):
                 queryset = queryset.filter(
                     leader__name__icontains=teacher)
 
-        # Group name
+        # Location
         if 'location' in self.request.GET:
             location = self.request.GET.get('location')
             if location:
                 queryset = queryset.filter(
                     location__icontains=location)
+
+        # Day
+        if 'day' in self.request.GET:
+            day = self.request.GET.get('day')
+            if day:
+                queryset = queryset.filter(
+                    day__icontains=day)
 
         return queryset
 

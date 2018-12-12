@@ -1,4 +1,62 @@
-<section class="multi-search-section">
+<div class="search">
+  <form action="{% url 'search:query' %}">
+    <!-- Form Row 1 -->
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label class="sr-only">Group</label>
+        <input type="text" name="group" class="form-control" placeholder="스터디 이름">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="sr-only">Location</label>
+        <input type="text" name="location" class="form-control" placeholder="지역">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="sr-only">Level</label>
+        <select name="level" class="form-control">
+          <option value="" selected="true">-레벨-</option>
+          <option value="초급">초급</option>
+          <option value="중급">중급</option>
+          <option value="고급">고급</option>
+        </select>
+      </div>
+    </div>
+    <!-- Form Row 2 -->
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label class="sr-only">Teacher</label>
+        <input type="text" name="teacher" class="form-control" placeholder="리더 이름">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="sr-only">Start Date</label>
+        <input type="text" name="start_date" class="form-control" placeholder="시작일">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="sr-only">Day</label>
+        <select name="day" class="form-control">
+          <option value="" selected="true">-요일-</option>
+          <option value="월요일">월요일</option>
+          <option value="화요일">화요일</option>
+          <option value="수요일">수요일</option>
+          <option value="목요일">목요일</option>
+          <option value="금요일">금요일</option>
+          <option value="토요일">토요일</option>
+          <option value="일요일">일요일</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-secondary btn-block mt-4" type="submit">검색하기</button>
+  </form>
+</div>
+
+
+
+
+{% comment %}
+  <!-- <section class="multi-search-section">
   <div class="msf-warp">
     <div class="container">
       <h5>스터디그룹 검색하기</h5>
@@ -18,4 +76,6 @@
       </form>
     </div>
   </div>
-</section>
+</section> -->
+{% endcomment %}
+  

@@ -1,21 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% load static %}
-{% block content %}
-	<!-- Hero section -->
-	<section class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-8 mx-auto">
-					<div class="hero-text text-white text-center">
-          <h2>Sign Up</h2>
-          <a href="{% url 'pages:teacher_signup' %}" class="btn btn-info btn-block">I'm a teacher</a>
-          <a href="{% url 'pages:student_signup' %}" class="btn btn-secondary btn-block">I'm a student</a>
-				</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Hero section end -->
+{% block title %}
+  | 회원가입
+{% endblock %}
 
-{% endblock content %}
-  
+{% block content %}
+
+<section id="register" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-user-plus"></i> 회원가입</h4>
+          </div>
+          <div class="card-body">
+							<a href="{% url 'pages:teacher_signup' %}" class="btn btn-outline-secondary btn-block">리더로 가입하기</a>
+							<a href="{% url 'pages:student_signup' %}" class="btn btn-secondary btn-block">멤버로 가입하기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

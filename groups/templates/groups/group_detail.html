@@ -1,14 +1,198 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+  | {{ group.name }}
+{% endblock %}
+
 {% block content %}
-  
-  <!-- Page top section -->
-	<section class="page-top-section set-bg" data-setbg="{% static 'img/page-top-bg.jpg' %}">
-		<div class="container text-white">
-			<h3>{{ group.name }}</h3>
+<section id="showcase-detail" class="py-5 text-white">
+  <div class="container py-4">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">{{ group.name }}</h1>
+        <p class="lead">
+					<i class="fas fa-map-marker"></i> <span class="mr-3">{{ group.location }}</span>
+					<i class="fas fa-balance-scale"></i> <span class="mr-3">{{ group.level }}</span>
+					<i class="fas fa-calendar-check"></i> <span class="">{{ group.day }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'pages:home' %}">홈</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'groups:list' %}">스터디 그룹</a>
+        </li>
+        <li class="breadcrumb-item active">{{ group.name }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Listing -->
+<section id="listing" class="py-4">
+  <div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<a href="{% url 'groups:list' %}" class="btn btn-light mb-4">목록으로</a>
+				{% if group.leader == request.user %}
+					<div class="btn-group float-right">
+						<a href="{% url 'groups:update' pk=group.pk %}" class="float-right btn btn-primary mb-4">수정하기</a>	
+						<a href="{% url 'groups:delete' pk=group.pk %}" class="float-right btn btn-danger mb-4">삭제하기</a>	
+					</div>
+				{% else %}
+					{% if request.user.is_student %}
+						{% if request.user not in group.members.all %}
+							<a href="{% url 'groups:join' pk=group.pk %}" class="float-right btn btn-primary mb-4">참여하기</a>										
+						{% else %}
+							<a href="{% url 'groups:leave' pk=group.pk %}" class="float-right btn btn-primary mb-4">떠나기</a>										
+						{% endif %}					
+					{% endif %}		
+				{% endif %}
+			</div>
 		</div>
-	</section>
-	<!--  Page top end -->
+		<div class="row">
+			<div class="col-md-8">
+        <!-- Home Main Image -->
+        <img src="{{ group.photo.url }}" alt="" class="img-main img-fluid mb-3">
+       
+        <!-- Fields -->
+        <div class="row mb-5 fields">
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+							<li class="list-group-item text-secondary">
+								<i class="fas fa-map-marker"></i> 지역:
+								<span class="float-right">{{ group.location }}
+								</span>
+							</li>
+							<li class="list-group-item text-secondary">
+								<i class="fas fa-calendar-check"></i> 요일:
+								<span class="float-right">{{ group.day }}
+								</span>
+							</li>
+              <li class="list-group-item text-secondary">
+                <i class="fas fa-graduation-cap"></i> 기간:
+                <span class="float-right">{{ group.duration }}주</span>
+              </li>              
+              <li class="list-group-item text-secondary">
+                <i class="fas fa-user"></i> 정원:
+                <span class="float-right">{{ group.members.count }} / {{ group.size }}명</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+							<li class="list-group-item text-secondary">
+								<i class="fas fa-calendar-alt"></i> 시작일:
+								<span class="float-right">{{ group.start_date }}</span>
+							</li>
+							<li class="list-group-item text-secondary">
+								<i class="fas fa-clock"></i> 시간:
+								<span class="float-right">{{ group.time }}</span>
+							</li>
+							<li class="list-group-item text-secondary">
+								<i class="fas fa-money-check"></i> 가격:								
+								{% if group.price == 0 %}
+									<span class="float-right">무료</span>
+								{% else %}
+										<span class="float-right">{{ group.price }}만원</span>
+								{% endif %}									
+							</li>
+              <li class="list-group-item text-secondary">
+									<i class="fas fa-balance-scale"></i> 레벨:
+                <span class="float-right">{{ group.level }}</span>
+              </li>
+
+
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="row mb-5">
+          <div class="col-md-12">
+						<h5 class="text-primary">스터디 소개</h5>
+						<hr>
+						<p>{{ group.description }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-3">
+					<div class="card-header">리더 프로필</div>
+          <img class="card-img-top" src="{{ group.leader.profile.profile_picture.url }}" alt="">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+						<h6 class="text-secondary">{{ group.leader.name }}</h6>
+						<p class="card-text">{{ group.leader.profile.bio }}</p>
+          </div>
+        </div>
+        <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">질문하기</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Inquiry Modal -->
+<div class="modal fade" id="inquiryModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'groups:email' %}" method="POST">
+          {% csrf_token %}
+          {% if user.is_authenticated %}
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+          {% else %}
+            <input type="hidden" name="user_id" value="0">
+          {% endif %}
+          <input type="hidden" name="realtor_email" value="{{ listing.realtor.email }}">
+          <input type="hidden" name="listing_id" value="{{ listing.id }}">
+          <div class="form-group">
+            <label for="property_name" class="col-form-label">Subject:</label>
+            <input type="text" name="subject" class="form-control">
+          </div>
+          <!-- <div class="form-group">
+            <label for="name" class="col-form-label">Name:</label>
+            <input type="text" name="name" class="form-control"
+              {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %} required>
+          </div> -->
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="email" name="from_email" class="form-control"
+              {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
+          </div>
+          <!-- <div class="form-group">
+            <label for="phone" class="col-form-label">Phone:</label>
+            <input type="text" name="phone" class="form-control">
+          </div> -->
+          <div class="form-group">
+            <label for="message" class="col-form-label">Message:</label>
+            <textarea name="message" class="form-control"></textarea>
+          </div>
+          <hr>
+          <input type="submit" value="Send" class="btn btn-block btn-secondary">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
 	
 	<!-- About section -->
 	<section class="blog-section spad">
@@ -137,6 +321,3 @@
 		</div>
 	</section>
 	<!-- About section end -->
-
-{% endblock content %}
-  
