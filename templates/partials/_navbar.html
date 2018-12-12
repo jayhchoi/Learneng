@@ -56,11 +56,6 @@
               <i class="fas fa-sign-out-alt"></i> 로그아웃
             </a>
           </li>
-          <li class="nav-item mr-3">
-            <a href="{% url 'pinax_messages:inbox' %}" class="nav-link">
-              <i class="fas fa-envelope"></i> 메세지
-            </a>
-          </li>
         {% else %}
           <li
             {% if 'register' in request.path %}

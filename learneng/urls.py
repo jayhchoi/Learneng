@@ -9,7 +9,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('groups/', include('groups.urls', namespace='groups')),
     path('search/', include('search.urls', namespace='search')),
-    path('messages/', include("pinax.messages.urls", namespace="pinax_messages")),
 ]
 
 if settings.DEBUG:
