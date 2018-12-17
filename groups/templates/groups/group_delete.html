@@ -1,22 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% load static %}
-{% block content %}
-	<!-- Hero section -->
-	<section id="signup-section" class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-7 mx-auto">
-					<div class="hero-text text-white">
-          <h2>Delete your group?</h2>
-          <form method="post">
-              {% csrf_token %}
-              <input type="submit" value="Confirm">
-            </form>
-				</div>
-				</div>
-			</div>
-		</div>
-	</section>
-  <!-- Hero section end -->
+{% load crispy_forms_tags %}
+{% block title %}
+  | 내 스터디 삭제하기
+{% endblock %}
 
-{% endblock content %}
+{% block content %}
+
+<section id="study-create" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-9 mx-auto">
+        <div class="card">
+          <div class="card-header bg-secondary text-white">
+            <h4><i class="fas fa-user-plus"></i> 내 스터디 삭제하기</h4>
+          </div>
+          <div class="card-body">
+							<form method="post">
+								{% csrf_token %}
+								{{ form|crispy }}
+								<button type="submit" class="btn btn-outline-secondary btn-block">확인</button>
+							</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,15 +1,16 @@
 {% load static %}
-<!-- Navbar -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
   <div class="container">
     <a class="navbar-brand" href="{% url 'pages:home' %}">
-      <i class="fas fa-school"></i>
-      <img src="{% static 'img/logo.png' %}" class="logo mr-3" alt="">
+      <i class="fas fa-school fa-2x"></i>
+      <img src="{% static 'img/logo.png' %}" class="logo mx-2 mb-2" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- LINKS ON THE LEFT -->
       <ul class="navbar-nav">
         <li
           {% if 'about' in request.path %}
@@ -18,10 +19,10 @@
           class="nav-item mr-3"
           {% endif %}
         >
-          <a class="nav-link" href="{% url 'pages:about' %}">소개</a>
+          <a class="nav-link" href="{% url 'pages:about' %}">About</a>
         </li>
         <li
-          {% if 'groups' in request.path %}
+          {% if '/groups/' == request.path %}
           class="nav-item active mr-3"
           {% else %}
           class="nav-item mr-3"
@@ -29,18 +30,30 @@
         >
           <a class="nav-link" href="{% url 'groups:list' %}">스터디</a>
         </li>
-        
         {% if request.user.is_leader == True %}
-          <li class="nav-item mr-3">
-            <a class="nav-link" href="{% url 'groups:create' %}">내 스터디 만들기 <i class="fas fa-plus"></i></a>
-          </li>          
+        <li
+          {% if 'create' in request.path %}
+          class="nav-item active mr-3"
+          {% else %}
+          class="nav-item mr-3"
+          {% endif %}
+        >        
+          <a class="nav-link" href="{% url 'groups:create' %}">내 스터디 만들기 <i class="fas fa-plus"></i></a>
+        </li>          
         {% endif %}
-          
       </ul>
 
+      <!-- LINKS ON THE RIGHT -->
       <ul class="navbar-nav ml-auto">
+        <!-- FOR AUTHENTICATED USERS -->
         {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
+          <li 
+            {% if 'my_group' in request.path or 'profile' in request.path %}
+            class="nav-item dropdown active"
+            {% else %}
+            class="nav-item dropdown"
+            {% endif %}
+          >
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ user.name }}
             </a>
@@ -50,7 +63,7 @@
               {% elif user.is_member %}
               <a class="dropdown-item" href="{% url 'accounts:member_group' %}">내 스터디</a>
               {% endif %}
-              <a class="dropdown-item" href="#">프로필</a>
+              <a class="dropdown-item" href="{% url 'accounts:profile' %}">프로필</a>
             </div>
           </li>
           <li class="nav-item mr-3">
@@ -59,8 +72,9 @@
             </a>
           </li>
         {% else %}
+          <!-- FOR UNAUTH USERS -->
           <li
-            {% if 'register' in request.path %}
+            {% if 'signup' in request.path %}
             class="nav-item active mr-3"
             {% else %}
             class="nav-item mr-3"
@@ -78,11 +92,9 @@
           >
             <a class="nav-link" href="{% url 'accounts:login' %}">
               <i class="fas fa-sign-in-alt"></i>
-
               로그인</a>
           </li>
         {% endif %}
-        
       </ul>
     </div>
   </div>

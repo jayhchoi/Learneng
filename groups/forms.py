@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.widgets import SelectDateWidget
+from django.utils import timezone
 
 from .models import Group
 
@@ -8,16 +9,23 @@ class GroupForm(forms.ModelForm):
     """Form definition for Group."""
     start_date = forms.DateField(
         widget=SelectDateWidget(
-        empty_label=("Choose Year", "Choose Month", "Choose Day")
+            years=[2019]
         ),
-        label='시작일'
+        label='시작일',
+        initial=timezone.now()
     )
 
-    time = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'예) 17:00 ~ 19:00'}))
+    time = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder':'예) 17:00 ~ 19:00'}),
+        label='시간'
+    )
+
+    location = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder':'예) 홍대'}),
+        label='지역'
+    )
 
     class Meta:
-        """Meta definition for Groupform."""
-
         model = Group
         fields = (
             'name', 'photo', 'level', 'start_date', 'day',

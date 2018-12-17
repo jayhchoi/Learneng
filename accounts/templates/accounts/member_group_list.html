@@ -6,21 +6,20 @@
 {% endblock %}
 
 {% block content %}
-
-<!-- Breadcrumb -->
-<section id="bc" class="mt-3">
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="{% url 'pages:home' %}">
-            <i class="fas fa-home"></i> 홈</a>
-        </li>
-        <li class="breadcrumb-item active"> 내 스터디</li>
-      </ol>
-    </nav>
+<!-- Showcase -->
+<section id="mygroup" class="showcase">
+  <div class="container py-5">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">내 스터디</h1>
+      </div>
+    </div>
   </div>
 </section>
+
+
+<!-- Breadcrumb -->
+{% include 'partials/_breadcrumb.html' with current="내 스터디" %}
 
 <section id="about" class="py-4">
   <div class="container">

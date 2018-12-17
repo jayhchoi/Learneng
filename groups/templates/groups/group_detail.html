@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<section id="showcase-detail" class="py-5 text-white">
+<section id="detail" class="showcase">
   <div class="container py-4">
     <div class="row text-center">
       <div class="col-md-12">
@@ -41,18 +41,17 @@
   <div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<a href="{% url 'groups:list' %}" class="btn btn-light mb-4">목록으로</a>
 				{% if group.leader == request.user %}
 					<div class="btn-group float-right">
-						<a href="{% url 'groups:update' pk=group.pk %}" class="float-right btn btn-primary mb-4">수정하기</a>	
+						<a href="{% url 'groups:update' pk=group.pk %}" class="float-right btn btn-success mb-4">수정하기</a>	
 						<a href="{% url 'groups:delete' pk=group.pk %}" class="float-right btn btn-danger mb-4">삭제하기</a>	
 					</div>
 				{% else %}
 					{% if request.user.is_member %}
 						{% if request.user not in group.members.all %}
-							<a href="{% url 'groups:join' pk=group.pk %}" class="float-right btn btn-primary mb-4">참여하기</a>										
+							<a href="{% url 'groups:join' pk=group.pk %}" class="float-right btn btn-success mb-4">참여하기</a>										
 						{% else %}
-							<a href="{% url 'groups:leave' pk=group.pk %}" class="float-right btn btn-primary mb-4">떠나기</a>										
+							<a href="{% url 'groups:leave' pk=group.pk %}" class="float-right btn btn-danger mb-4">떠나기</a>										
 						{% endif %}					
 					{% endif %}		
 				{% endif %}
@@ -119,7 +118,7 @@
         <!-- Description -->
         <div class="row mb-5">
           <div class="col-md-12">
-						<h5 class="text-primary">스터디 소개</h5>
+						<h4>스터디 소개</h4>
 						<hr>
 						<p>{{ group.description }}</p>
           </div>
@@ -127,11 +126,10 @@
       </div>
       <div class="col-md-4">
         <div class="card mb-3">
-					<div class="card-header">리더 프로필</div>
+					<div class="card-header h5 bg-secondary text-white">리더 프로필</div>
           <img class="card-img-top" src="{{ group.leader.profile.photo.url }}" alt="">
           <div class="card-body">
-            <h5 class="card-title"></h5>
-						<h6 class="text-secondary">{{ group.leader.name }}</h6>
+						<h4 class="text-secondary">{{ group.leader.name }}</h6>
 						<p class="card-text">{{ group.leader.profile.bio }}</p>
           </div>
         </div>

@@ -58,12 +58,23 @@ class SearchGroupView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['queries'] = [
-            self.request.GET.get('group'),
-            self.request.GET.get('level'),
-            self.request.GET.get('date'),
-            self.request.GET.get('teacher'),
-            self.request.GET.get('location')
-        ]
+        # Get query from request
+        q_group = self.request.GET.get('group')
+        q_level = self.request.GET.get('level')
+        q_start_date = self.request.GET.get('start_date')
+        q_teacher = self.request.GET.get('teacher')
+        q_location = self.request.GET.get('location')
+        q_day = self.request.GET.get('day')
+        queries = q_group + q_level + q_start_date + q_teacher + q_location + q_day
+
+        if queries != '':
+            context['queries'] = [
+                q_group,
+                q_level,
+                q_start_date,
+                q_teacher,
+                q_location,
+                q_day
+            ]
         return context
         
