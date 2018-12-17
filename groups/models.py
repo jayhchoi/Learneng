@@ -24,7 +24,7 @@ class Group(models.Model):
     leader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='leader_of')
     members = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='member_of')
     name = models.CharField('스터디명', max_length=140)
-    photo = models.ImageField('메인 이미지', upload_to='group/%Y/%m/%d/',
+    photo = models.ImageField('메인 이미지', upload_to='%Y/%m/%d/group/',
                               default='default/group-default.jpg')
     level = models.CharField('레벨', max_length=30, choices=LEVEL_CHOICES, default='elementary')
     start_date = models.DateField('시작일')
