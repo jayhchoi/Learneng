@@ -19,12 +19,18 @@ DAY_CHOICES = (
     ('일요일', '일요일')
 )
 
+STATUS_CHOICES = (
+    ('open', 'Open'),
+    ('closed', 'Closed'),
+    ('full', 'Full')
+)
+
 
 class Group(models.Model):
     leader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='leader_of')
     members = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='member_of')
     name = models.CharField('스터디명', max_length=140)
-    photo = models.ImageField('메인 이미지', upload_to='%Y/%m/%d/group/',
+    photo = models.ImageField('메인 이미지', upload_to='groups/%Y/%m/%d/',
                               default='default/group-default.jpg')
     level = models.CharField('레벨', max_length=30, choices=LEVEL_CHOICES, default='elementary')
     start_date = models.DateField('시작일')
@@ -35,6 +41,9 @@ class Group(models.Model):
     size = models.PositiveSmallIntegerField('최대정원', default=4)
     location = models.CharField('지역', max_length=30)
     description = models.TextField('스터디 소개')
+    timestamp = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=40, default='active', choices=STATUS_CHOICES)
 
     def __str__(self):
         return self.name

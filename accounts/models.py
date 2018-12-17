@@ -16,7 +16,7 @@ class User(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(_('자기소개'))
-    photo = models.ImageField(_('프로필 사진'), upload_to='%Y/%m/%d/profile/',
+    photo = models.ImageField(_('프로필 사진'), upload_to='accounts/%Y/%m/%d/',
                                         default='default/profile-default.jpg')
 
     def __str__(self):
