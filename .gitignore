@@ -9,6 +9,7 @@ __pycache__/
 db.sqlite3
 # Custom
 /static
+media_root
 dev.py
 scss
 
