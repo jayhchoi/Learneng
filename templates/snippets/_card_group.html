@@ -39,7 +39,15 @@
         </div>
       </div>
       <hr class="my-2">
+      
+      {% if group.status == 'open' %}
       <a href="{{ group.get_absolute_url }}" class="btn btn-secondary btn-block">자세히</a>
+      {% elif group.status == 'full' %}
+      <a href="{{ group.get_absolute_url }}" class="btn btn-danger btn-block disabled">정원 초과</a>
+      {% else %}
+      <a href="{{ group.get_absolute_url }}" class="btn btn-dark btn-block disabled">모집 마감</a>
+      {% endif %}
+        
     </div>
   </div>
 </div>

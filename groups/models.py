@@ -1,4 +1,6 @@
+from datetime import date
 from django.db import models
+from django.db.models.signals import pre_save, m2m_changed
 from django.conf import settings
 from django.urls import reverse
 
@@ -43,7 +45,7 @@ class Group(models.Model):
     description = models.TextField('스터디 소개')
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=40, default='active', choices=STATUS_CHOICES)
+    status = models.CharField(max_length=40, default='open', choices=STATUS_CHOICES)
 
     def __str__(self):
         return self.name
@@ -74,3 +76,21 @@ class Comment(models.Model):
 
     def __str__(self):
         return str(self.rating) + " by " + str(self.user)
+
+
+# Use signals to alter Group.status
+def m2m_changed_alter_status(sender, instance, action, **kwargs):
+    if instance.members.count() >= instance.size:
+        instance.status = 'full'
+        instance.save()
+    else:
+        instance.status = 'open'
+        instance.save()
+
+m2m_changed.connect(m2m_changed_alter_status, sender=Group.members.through)
+
+def pre_save_alter_status(sender, instance, **kwargs):
+    if instance.start_date < date.today():
+        instance.status = 'closed'
+
+pre_save.connect(pre_save_alter_status, sender=Group)
