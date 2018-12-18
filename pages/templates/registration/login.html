@@ -16,8 +16,6 @@
             <h4><i class="fas fa-sign-in-alt"></i> 로그인</h4>
           </div>
           <div class="card-body">
-            <!-- Alerts -->
-            {% include 'partials/_alerts.html' %}
 						<form method="post">
 							{% csrf_token %}
 							{{ form|crispy }}

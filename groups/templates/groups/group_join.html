@@ -16,8 +16,6 @@
             <h4><i class="fas fa-sign-in-alt"></i> 스터디 참여하기</h4>
           </div>
           <div class="card-body">
-            <!-- Alerts -->
-            {% include 'partials/_alerts.html' %}
             <div class="card bg-light mb-3">
               <div class="card-header"><strong>{{ group.location }}</strong>에서 진행되는 <strong>{{ group.leader.name }}</strong>님의 <strong>{{ group.level }}</strong> 영어회화 스터디!</div>
               <img src="{{ group.photo.url }}" alt="" class="card-img-top">
