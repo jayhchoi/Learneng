@@ -79,7 +79,7 @@ class Comment(models.Model):
 
 
 # Use signals to alter Group.status
-def m2m_changed_alter_status(sender, instance, action, **kwargs):
+def members_changed(sender, instance, action, **kwargs):
     if instance.members.count() >= instance.size:
         instance.status = 'full'
         instance.save()
@@ -87,10 +87,18 @@ def m2m_changed_alter_status(sender, instance, action, **kwargs):
         instance.status = 'open'
         instance.save()
 
-m2m_changed.connect(m2m_changed_alter_status, sender=Group.members.through)
+m2m_changed.connect(members_changed, sender=Group.members.through)
 
-def pre_save_alter_status(sender, instance, **kwargs):
-    if instance.start_date < date.today():
-        instance.status = 'closed'
+# def pre_save_alter_status(sender, instance, **kwargs):
+#     if instance.start_date < date.today():
+#         instance.status = 'closed'
+#     # else:
+#         # # if instance.members.count() < instance.size:
+#         # instance.status = 'open'
+#         # print('in fact?')
 
-pre_save.connect(pre_save_alter_status, sender=Group)
+# pre_save.connect(pre_save_alter_status, sender=Group)
+
+# Status 로직
+# 시작 날짜가 지나면 다른 상관 없이 closed
+# 시작 날짜가 안 지났으면 인원으로 open or full

@@ -26,55 +26,31 @@
       <div class="col-md-9 mx-auto">
         <h4>리드 중인 스터디</h4>
         <hr>
-        
         {% if groups %}
-        <div class="accordion" id="accordionExample">
-        {% for group in groups %}
-              <div class="card mb-3">
-                <div class="card-header" id="heading{{ forloop.counter }}">
-                  <h5 class="mb-0">
-                    <a href="{{ group.get_absolute_url }}">#{{ forloop.counter }}. {{ group.name }}</a>
-                    <button class="btn btn-secondary float-right py-0" type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse{{ forloop.counter }}">
-                      멤버 리스트
-                    </button>
-                  </h5>
-                </div>
+          <div class="row">
             
-                <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="heading{{ forloop.counter }}" data-parent="#accordionExample">
-                  <div class="card-body">
-                      {% if group.members.all %}
-                        <table class="table table-striped table-light">
-                          <thead>
-                            <tr>
-                              <th scope="col">멤버</th>
-                              <th scope="col">이름</th>
-                              <th scope="col">연락처</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {% for member in group.members.all %}
-                              <tr>
-                                <th scope="row">{{ forloop.counter }}</th>
-                                <td>{{ member.name }}</td>
-                                {% if member.contact %}
-                                  <td>{{ member.contact }}</td>
-                                {% else %}
-                                  <td>{{member.email}}</td>
-                                {% endif %}
-                              </tr>
-                            {% endfor %}
-                          </tbody>
-                        </table>                      
-                      {% else %}
-                        <p>현재 참여 중인 멤버가 없습니다.</p>
-                      {% endif %}
-                        
-                  </div>
+            {% for group in groups %}
+            <div class="col-md-6">
+              <div class="card border-secondary mb-3">
+                <div class="card-header text-center h4"><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></div>
+                <div class="card-body text-secondary">
+                  {% if group.members.all %}
+                  <p>{{ group.members.count }}명의 멤버가 참여 중입니다.</p>
+                  {% for member in group.members.all %}
+                  <ul class="list-group mb-2">
+                    <li class="list-group-item list-group-item-secondary"><i class="far fa-user mr-2"></i>{{ member.name }}</li>
+                    <li class="list-group-item"><i class="fas fa-mobile-alt mr-2"></i>{{ member.contact }}</li>
+                  </ul>
+                  {% endfor %}
+                  {% else %}
+                  <p>참여 중인 멤버가 없습니다.</p>
+                  {% endif %}
                 </div>
               </div>
-              
-              {% endfor %}
             </div>
+            {% endfor %}
+              
+          </div>
         {% else %}
           <p>현재 리드 중인 스터디 그룹이 없습니다.</p>
         {% endif %}

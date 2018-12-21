@@ -98,6 +98,10 @@ def group_join_view(request, **kwargs):
         messages.warning(request, '이미 해당 그룹의 멤버입니다.')
         return redirect(group.get_absolute_url())
 
+    if group.members.count() >= group.size:
+        messages.warning(request, '해당 그룹은 정원이 초과되었습니다.')
+        return redirect('pages:home')
+
     if request.method == "POST":
         contact_ = request.POST.get('contact')
         group.members.add(user)

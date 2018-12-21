@@ -7,12 +7,17 @@ from .models import Group
 
 class GroupForm(forms.ModelForm):
     """Form definition for Group."""
-    start_date = forms.DateField(
-        widget=SelectDateWidget(
-            years=[2019]
-        ),
-        label='시작일',
-        initial=timezone.now()
+    # start_date = forms.DateField(
+    #     widget=SelectDateWidget(
+    #         years=[2019]
+    #     ),
+    #     label='시작일',
+    #     initial=timezone.now()
+    # )
+
+    start_date = forms.CharField(
+        widget=forms.TextInput(attrs={'id': 'datepicker'}),
+        label='시작일'
     )
 
     time = forms.CharField(

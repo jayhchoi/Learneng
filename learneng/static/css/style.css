@@ -22,6 +22,9 @@ img {
   min-height: 75px;
   opacity: 0.9; }
 
+.list-group-item {
+  padding: 0.5rem 0.5rem !important; }
+
 .card .img-wrapper {
   position: relative;
   overflow: hidden;
@@ -29,8 +32,7 @@ img {
   display: flex;
   justify-content: center; }
   .card .img-wrapper img {
-    height: 100%;
-    width: auto; }
+    height: 100%; }
   .card .img-wrapper .card-img-overlay {
     position: absolute; }
 .card .card-body .group-heading {
@@ -83,7 +85,10 @@ img {
 
 @media (max-width: 991px) {
   .display-4 {
-    font-size: 3rem; } }
+    font-size: 3rem; }
+
+  #member-list {
+    margin-top: 10px !important; } }
 @media (max-width: 768px) {
   .display-4 {
     font-size: 2.5rem; }
@@ -113,13 +118,10 @@ img {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important; }
     #groups h3 {
-      margin-bottom: 1rem !important; }
-
-  .card .img-wrapper {
-    height: 250px !important; } }
+      margin-bottom: 1rem !important; } }
 @media (max-width: 576px) {
   .display-4 {
     font-size: 1.75rem; }
 
-  .card .img-wrapper {
-    height: 200px !important; } }
+  #detail-second {
+    margin-top: 30px; } }

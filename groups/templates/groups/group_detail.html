@@ -48,8 +48,12 @@
 					</div>
 				{% else %}
 					{% if request.user.is_member %}
-						{% if request.user not in group.members.all %}
-							<a href="{% url 'groups:join' pk=group.pk %}" class="float-right btn btn-success mb-4">참여하기</a>										
+            {% if request.user not in group.members.all %}
+              {% if group.members.count < group.size %}
+              <a href="{% url 'groups:join' pk=group.pk %}" class="float-right btn btn-success mb-4">참여하기</a>
+              {% else %}
+              <a href="#" class="float-right btn btn-warning mb-4 disabled">정원 초과</a>
+              {% endif %}
 						{% else %}
 							<a href="{% url 'groups:leave' pk=group.pk %}" class="float-right btn btn-danger mb-4">떠나기</a>										
 						{% endif %}					
@@ -86,7 +90,7 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" id="detail-second">
             <ul class="list-group list-group-flush">
 							<li class="list-group-item text-secondary">
 								<i class="fas fa-calendar-alt"></i> 시작일:
@@ -97,7 +101,7 @@
 								<span class="float-right">{{ group.time }}</span>
 							</li>
 							<li class="list-group-item text-secondary">
-								<i class="fas fa-money-check"></i> 가격:								
+								<i class="fas fa-money-check"></i> 참여비:								
 								{% if group.price == 0 %}
 									<span class="float-right">무료</span>
 								{% else %}
@@ -108,9 +112,6 @@
 									<i class="fas fa-balance-scale"></i> 레벨:
                 <span class="float-right">{{ group.level }}</span>
               </li>
-
-
-
             </ul>
           </div>
         </div>
