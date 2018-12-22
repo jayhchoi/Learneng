@@ -11,7 +11,7 @@
   <div class="container py-5">
     <div class="row text-center">
       <div class="col-md-12">
-        <h1 class="display-4">내 스터디</h1>
+        <h1 class="display-4">My Study</h1>
       </div>
     </div>
   </div>
@@ -25,33 +25,29 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 mx-auto">
-        <h2>참여 중인 스터디</h2>
+        <h4>참여 중인 스터디</h4>
         <hr>
-        
         {% if groups %}
-        <div class="accordion" id="accordionExample">
-        {% for group in groups %}
-          <table class="table">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">스터디</th>
-                <th scope="col">리더</th>
-                <th scope="col">시작일</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></td>
-                <td>{{ group.leader.name }}</td>
-                <td>{{ group.start_date }}</td>
-              </tr>
-            </tbody>
-          </table>
-              
-        {% endfor %}
-            </div>
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">스터디</th>
+              <th scope="col" class="table-hide">리더</th>
+              <th scope="col" class="table-hide">시작일</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for group in groups %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></td>
+              <td class="table-hide">{{ group.leader.name }}</td>
+              <td class="table-hide">{{ group.start_date }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
         {% else %}
           <p>현재 참여 중인 스터디가 없습니다.</p>
         {% endif %}
