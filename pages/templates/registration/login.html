@@ -18,7 +18,8 @@
           <div class="card-body">
 						<form method="post">
 							{% csrf_token %}
-							{{ form|crispy }}
+              {{ form|crispy }}
+              <a href="{% url 'accounts:signup' %}" class="float-right" id="to-signup"><i class="fas fa-user-plus"></i> 회원가입</a>
 							<button type="submit" class="btn btn-secondary btn-block">확인</button>
 						</form>
           </div>

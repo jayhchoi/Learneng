@@ -20,6 +20,8 @@ class GroupForm(forms.ModelForm):
         label='시작일'
     )
 
+    photo = forms.ImageField(label='메인 이미지(Optional)')
+
     time = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder':'예) 17:00 ~ 19:00'}),
         label='시간'
