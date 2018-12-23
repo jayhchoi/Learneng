@@ -131,6 +131,8 @@ a#to-signup {
     margin-top: 1rem; }
 
   .card .img-wrapper {
+    height: auto; }
+  .card .card-body .group-heading {
     height: auto; } }
 @media (max-width: 576px) {
   .display-4 {

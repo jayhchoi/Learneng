@@ -1,6 +1,3 @@
-const date = new Date();
-document.querySelector(".year").innerHTML = date.getFullYear();
-
 // Timeout messages
 if (document.getElementById("message")) {
   setTimeout(function() {
