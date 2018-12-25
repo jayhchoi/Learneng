@@ -1,4 +1,5 @@
 from datetime import date
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models.signals import pre_save, m2m_changed
 from django.conf import settings
@@ -40,7 +41,7 @@ class Group(models.Model):
     time = models.CharField('시간', max_length=30)
     duration = models.PositiveSmallIntegerField('기간(주)', default=4)
     price = models.PositiveSmallIntegerField('참여비(만원)', default=0)
-    size = models.PositiveSmallIntegerField('최대정원', default=4)
+    size = models.PositiveSmallIntegerField('최대정원', default=4, validators=[MaxValueValidator(8), MinValueValidator(1)])
     location = models.CharField('지역', max_length=30)
     description = models.TextField('스터디 소개')
     timestamp = models.DateTimeField(auto_now_add=True)
