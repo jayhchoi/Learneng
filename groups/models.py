@@ -60,25 +60,6 @@ class Group(models.Model):
 #     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
-RATING_CHOICES = (
-    (5, 5),
-    (4, 4),
-    (3, 3),
-    (2, 2),
-    (1, 1),
-)
-
-
-class Comment(models.Model):
-    leader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comment_to')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comment_by')
-    content = models.TextField()
-    rating = models.PositiveSmallIntegerField(choices=RATING_CHOICES)
-
-    def __str__(self):
-        return str(self.rating) + " by " + str(self.user)
-
-
 # Use signals to alter Group.status
 def members_changed(sender, instance, action, **kwargs):
     if instance.members.count() >= instance.size:

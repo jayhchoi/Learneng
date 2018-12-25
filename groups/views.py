@@ -17,6 +17,8 @@ from django.views.generic import (
 
 from .forms import GroupForm
 from .models import Group
+from comments.models import Comment
+from comments.forms import CommentForm
 
 
 class GroupListView(ListView):
@@ -32,6 +34,12 @@ class GroupListView(ListView):
 class GroupDetailView(LoginRequiredMixin, DetailView):
     model = Group
     template_name = 'groups/group_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.all()
+        context['form'] = CommentForm()
+        return context
     
 
 class GroupCreateView(LoginRequiredMixin, CreateView):

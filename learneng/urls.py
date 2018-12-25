@@ -9,6 +9,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('groups/', include('groups.urls', namespace='groups')),
     path('search/', include('search.urls', namespace='search')),
+    path('comments/', include('comments.urls', namespace='comments')),
 ]
 
 if settings.DEBUG:

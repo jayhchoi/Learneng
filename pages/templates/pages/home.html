@@ -30,7 +30,7 @@
     <div class="row">
       {% if groups %}
       {% for group in groups|slice:":3" %}
-        {% include 'snippets/_card_group.html' %}
+        {% include 'groups/_card.html' %}
       {% endfor %}
       {% else %}
       <div class="col-md-12">

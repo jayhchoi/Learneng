@@ -30,6 +30,21 @@ a#to-signup {
   font-size: 0.9rem;
   margin-bottom: 0.25rem; }
 
+.media {
+  font-size: 0.85rem !important; }
+  .media h5 {
+    font-size: 1rem;
+    font-weight: bold; }
+  .media img {
+    max-width: 64px;
+    border-radius: 15%; }
+
+#leader-review textarea {
+  height: 100px; }
+
+#div_id_body {
+  margin-bottom: 0.5em; }
+
 .card .img-wrapper {
   position: relative;
   overflow: hidden;
