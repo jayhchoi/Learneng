@@ -27,7 +27,10 @@ class Profile(models.Model):
         total_rating = 0
         for comment in comment_qs:
             total_rating += comment.rating
-        average_rating = total_rating / comment_qs.count()
+        if note comment_qs.count():
+            average_rating = total_rating / comment_qs.count()
+        else:
+            average_rating = 0
         return round(average_rating, 2)
 
 
