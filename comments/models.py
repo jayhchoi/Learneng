@@ -18,3 +18,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return "from " + self.member.username + " to " + self.leader.username
+
+    def get_star_checked(self):
+        return "x" * self.rating
+
+    def get_star_unchecked(self):
+        return "x" * (5 - self.rating)

@@ -25,3 +25,9 @@ class CommentForm(forms.ModelForm):
             'body',
             'rating'
         )
+
+    # def clean_body(self):
+    #     body = self.cleaned_data['body']
+    #     if len(body) > 200:
+    #         raise forms.ValidationError("Too long")
+    #     return body

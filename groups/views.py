@@ -36,8 +36,9 @@ class GroupDetailView(LoginRequiredMixin, DetailView):
     template_name = 'groups/group_detail.html'
 
     def get_context_data(self, **kwargs):
+        obj = self.get_object()
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.all()
+        context['comments'] = Comment.objects.filter(leader=obj.leader).order_by('-pk')
         context['form'] = CommentForm()
         return context
     

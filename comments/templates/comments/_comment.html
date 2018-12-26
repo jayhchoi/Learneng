@@ -1,7 +1,13 @@
 <div class="media mb-3">
   <img src={{ comment.member.profile.photo.url }} class="mr-3 py-1" alt="...">
   <div class="media-body">
-    <h5 class="mt-0">{{ comment.member.username }}</h5>
-    {{ comment.body }}
+    <h5 class="my-0">{{ comment.member.username }}</h5>
+    {% for i in checked %}
+      <span class="fas fa-star fa-sm"></span>
+    {% endfor %}
+    {% for i in unchecked %}
+      <span class="far fa-star fa-sm"></span>  
+    {% endfor %}
+    <p>{{ comment.body|truncatechars:500 }}</p>
   </div>
 </div>

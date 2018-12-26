@@ -22,6 +22,14 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_average_rating(self):
+        comment_qs = self.user.comment_to.all()
+        total_rating = 0
+        for comment in comment_qs:
+            total_rating += comment.rating
+        average_rating = total_rating / comment_qs.count()
+        return round(average_rating, 2)
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

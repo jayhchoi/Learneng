@@ -9,6 +9,9 @@ body {
   body .coding {
     font-family: 'Nanum Gothic Coding', monospace; }
 
+.fa-star {
+  color: orange; }
+
 img {
   width: 100%; }
 
