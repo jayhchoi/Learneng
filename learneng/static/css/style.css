@@ -9,6 +9,13 @@ body {
   body .coding {
     font-family: 'Nanum Gothic Coding', monospace; }
 
+#comment-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #af54a7;
+  padding: 0; }
+
 .fa-star {
   color: orange; }
 
@@ -44,6 +51,8 @@ a#to-signup {
 
 #leader-review textarea {
   height: 100px; }
+#leader-review p {
+  word-break: break-word; }
 
 #div_id_body {
   margin-bottom: 0.5em; }
@@ -61,15 +70,15 @@ a#to-signup {
 .card .card-body .group-heading {
   height: 120px; }
 
-#groups .card-body:hover {
-  background: #af54a7;
-  color: #fff; }
-  #groups .card-body:hover i {
-    color: #fff !important; }
-  #groups .card-body:hover .btn {
-    background: #fff !important;
-    color: #af54a7; }
-
+@media (min-width: 768px) {
+  #groups .card-body:hover {
+    background: #af54a7;
+    color: #fff; }
+    #groups .card-body:hover i {
+      color: #fff !important; }
+    #groups .card-body:hover .btn {
+      background: #fff !important;
+      color: #af54a7; } }
 .showcase {
   position: relative;
   min-height: 300px;
