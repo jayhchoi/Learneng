@@ -131,7 +131,7 @@
           <div class="col-md-12">
 						<h4>스터디 소개</h4>
 						<hr>
-						<p>{{ group.description }}</p>
+						<p>{{ group.description|linebreaks }}</p>
           </div>
         </div>
 
@@ -148,7 +148,7 @@
           <div class="card-body">
 						<h4 class="text-secondary">{{ group.leader.name }}</h6>
 						<p class="card-text"><span class="fas fa-star"></span> {{ group.leader.profile.get_average_rating }}</p>
-						<p class="card-text">{{ group.leader.profile.bio }}</p>
+						<p class="card-text">{{ group.leader.profile.bio|linebreaks }}</p>
           </div>
         </div>
         <!-- <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">질문하기</button> -->

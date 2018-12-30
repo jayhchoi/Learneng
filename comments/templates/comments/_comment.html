@@ -8,7 +8,7 @@
     {% for i in unchecked %}
       <span class="far fa-star fa-sm"></span>  
     {% endfor %}
-    <p class="mb-2">{{ comment.body|truncatechars:500 }}</p>
+    <p class="mb-2">{{ comment.body|truncatechars:500|linebreaks }}</p>
     
     {% if request.user == comment.member %}
       <form method="POST" action="{% url 'comments:delete' pk=comment.pk %}">{% csrf_token %}
