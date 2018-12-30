@@ -42,7 +42,15 @@
   <div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				{% if group.leader == request.user %}
+        {% if group.leader == request.user %}
+          <!-- <div class="float-left">
+            <div class="form-group">
+              <span class="switch">
+                <input type="checkbox" class="switch" id="switch-normal">
+                <label for="switch-normal">Normal switch</label>
+              </span>
+            </div>
+          </div> -->
 					<div class="btn-group float-right">
 						<a href="{% url 'groups:update' pk=group.pk %}" class="float-right btn btn-success mb-4">수정하기</a>	
 						<a href="{% url 'groups:delete' pk=group.pk %}" class="float-right btn btn-danger mb-4">삭제하기</a>	
