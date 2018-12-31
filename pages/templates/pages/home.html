@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  | English Made Easy
+  | 영어회화 스터디 매칭 무료 플랫폼
 {% endblock %}
   
 {% block content %}
@@ -11,9 +11,10 @@
   <div class="container text-center">
     <div class="home-search">
       <div class="overlay">
-        <h1 class="display-4 mb-4">
-          LearnEng은 영어회화 스터디 매칭 무료 플랫폼입니다
+        <h1 class="display-5 mb-4">
+          런잉은 영어 스터디 매칭 무료 플랫폼입니다
         </h1>
+        <p class="lead">중개수수료 없이, 자유롭게 영어 스터디를 개설하고 참여하세요.</p>
         <a href="{% url 'pages:about' %}" class="btn btn-outline-secondary mb-3"><strong>더 알아보기</strong></a>
         {% include 'partials/_search_form.html' %}
       </div>

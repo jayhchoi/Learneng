@@ -118,13 +118,13 @@ a#to-signup {
     background: rgba(51, 51, 51, 0.7); }
 
 @media (max-width: 991px) {
-  .display-4 {
+  .display-5 {
     font-size: 3rem; }
 
   #member-list {
     margin-top: 10px !important; } }
 @media (max-width: 768px) {
-  .display-4 {
+  .display-5 {
     font-size: 2.5rem; }
 
   h4 {
@@ -164,8 +164,11 @@ a#to-signup {
   .card .card-body .group-heading {
     height: auto; } }
 @media (max-width: 576px) {
-  .display-4 {
-    font-size: 1.75rem; }
+  .display-5 {
+    font-size: 1.7rem; }
+
+  .lead {
+    font-size: 1rem; }
 
   #detail-second {
     margin-top: 30px; }

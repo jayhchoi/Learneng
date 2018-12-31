@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  | 스터디 찾기
+  | 나에게 맞는 영어회화 스터디 찾기
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
   <div class="container">
     <div class="row text-center">
       <div class="col">
-        <h1 class="display-4 mb-4">나에게 맞는 스터디를 찾아보세요!</h1>
+        <h1 class="display-5 mb-4">나에게 맞는 스터디를 찾아보세요!</h1>
 				{% include 'partials/_search_form.html' %}
       </div>
     </div>
@@ -44,7 +44,7 @@
 			{% endfor %}
 			{% else %}
 			<div class="col-md-12">
-				<p>No groups Available</p>
+				<p>No groups available</p>
 			</div>
 			{% endif %}
 		</div>
