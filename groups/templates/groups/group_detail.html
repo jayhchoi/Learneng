@@ -167,7 +167,7 @@
             {{ form|crispy }}
             <input type="hidden" name="next" value="{{ request.path }}">
             <input type="hidden" name="leader_id" value="{{ group.leader.id }}">
-            <button class="btn btn-block btn-secondary mb-3">리뷰 달기</button>
+            <button class="btn btn-block btn-secondary mb-3">리뷰 쓰기</button>
           </form>
         {% endif %}
         {% for comment in comments %}
