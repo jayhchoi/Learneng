@@ -1,56 +1,106 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block title %} | About: what,
+how, & why? {% endblock %} {% block content %}
 
-{% block title %}
-  | About: what, how, & why?
-{% endblock %}
-
-{% block content %}
-
-<!-- Showcase -->
-<section class="showcase" id="about">
-  <div class="container py-5">
-    <div class="row text-center">
-      <div class="col-md-12">
-        <h1 class="display-5">About</h1>
+<div class="page-about">
+  <!-- Showcase -->
+  <section class="showcase" id="about">
+    <div class="container py-5">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-5">About</h1>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Breadcrumb -->
-{% include 'partials/_breadcrumb.html' with current="About" %}
+  <!-- Breadcrumb -->
+  {% include 'partials/_breadcrumb.html' with current="About" %}
 
-<section id="about" class="py-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-9 mx-auto">
-        <div class="bg-light p-4">
-          <h4>What is LearnEng?</h4>
-          <p class="mt-4">
-            런잉은 영어회화 스터디 매칭 플랫폼입니다. 리더는 스터디를 개설해 멤버를 모집할 수 있고, 멤버는 자신에게 알맞은 스터디를 찾아 쉽게 참여할 수 있습니다.
-        </div>
-        <div class="bg-secondary text-white p-4">
-          <h4>How to use</h4>        
-          <p class="mt-4">
-            1. 리더로 가입한 회원들이 스터디를 개설합니다<br>
-            2. 멤버로 가입한 회원들은 스터디 목록에서 마음에 드는 스터디를 골라 참여합니다<br>
-            3. 리더는 '내 스터디' 페이지에서 내 스터디에 참여한 멤버들의 연락처를 확인할 수 있습니다<br>
-            4. 리더는 카톡이나 문자를 통해 멤버들에게 정확한 스터디카페 위치 등을 공지합니다. (추후 런잉 웹사이트 내 개인/그룹 메세지 기능을 추가할 계획입니다.)<br>
-          </p>
-        </div>
-        <div class="bg-light p-4">
-            <h4>Why LearnEng?</h4>
-            <p class="mt-4">
-              - 국내에서 영어회화를 익히는 가장 좋은 방법은 영어가 유창한 개인 선생님을 고용해 최대한 많은 대화 연습을 하는 것입니다. 하지만 이것은 매우 비싼 방법입니다. 1 : N 방식의 스터디는 비용 측면에서 합리적인 대안입니다<br>
-              - 지금까지 우리에겐 영어회화 스터디를 쉽게 만들고 참여할 수 있는 플랫폼이 없었습니다. 네이버 카페나, 고우해커스 게시판 등을 통해서 스터디를 모집해왔지만, 이건 분명 최적화된 방법이 아니었습니다<br>
-              - 영어회화 스터디에는 반드시 영어가 유창한 '리더'가 필요합니다. 리더 없이 비슷한 실력의 멤버들끼리 공부하는 방식은 큰 도움이 되기 어렵습니다<br>
-              - <a href="https://studysearch.co.kr/mcl/gsc/">스터디서치</a>라는 괜찮은 서비스가 있지만, 이는 열린 플랫폼이 아니고, 따라서 중간 수수료가 크게 발생합니다. 런잉은 100% 무료 오픈 플랫폼을 지향합니다<br>
-            </p>
+  <section class="section-about">
+    <div class="section-about__row section-about__row--what">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-6">
+          <div>
+            <i class="fas fa-school"></i>
+            </div>
           </div>
+          <div class="col-md-6">
+            <div>
+              <h4>What is LearnEng?</h4>
+              <p>
+                런잉은 영어회화 스터디 매칭 플랫폼입니다. 리더는 스터디를 개설해
+                멤버를 모집할 수 있고, 멤버는 자신에게 알맞은 스터디를 찾아 쉽게
+                참여할 수 있습니다.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+
+    <div class="section-about__row section-about__row--how">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-7">
+            <div>
+              <h4>How to use?</h4>
+              <p>
+                1. 리더로 가입한 회원들이 스터디를 개설합니다<br />
+                2. 멤버로 가입한 회원들은 스터디 목록에서 마음에 드는 스터디를
+                골라 참여합니다<br />
+                3. 리더는 '내 스터디' 페이지에서 내 스터디에 참여한 멤버들의
+                연락처를 확인할 수 있습니다<br />
+                4. 리더는 카톡이나 문자를 통해 멤버들에게 정확한 스터디카페 위치
+                등을 공지합니다. (추후 런잉 웹사이트 내 개인/그룹 메세지 기능을
+                추가할 계획입니다.)<br />
+              </p>
+            </div>
+          </div>
+          <div class="col-md-5">
+          <div>
+            <i class="fas fa-map-signs"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-about__row section-about__row--why">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-4">
+          <div>
+            <i class="fas fa-question-circle"></i>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div>
+              <h4>Why LearnEng?</h4>
+              <p>
+                - 국내에서 영어회화를 익히는 가장 좋은 방법은 영어가 유창한 개인
+                선생님을 고용해 최대한 많은 대화 연습을 하는 것입니다. 하지만
+                이것은 매우 비싼 방법입니다. 1 : N 방식의 스터디는 비용 측면에서
+                합리적인 대안입니다<br />
+                - 지금까지 우리에겐 영어회화 스터디를 쉽게 만들고 참여할 수 있는
+                플랫폼이 없었습니다. 네이버 카페나, 고우해커스 게시판 등을
+                통해서 스터디를 모집해왔지만, 이건 분명 최적화된 방법이
+                아니었습니다<br />
+                - 영어회화 스터디에는 반드시 영어가 유창한 '리더'가 필요합니다.
+                리더 없이 비슷한 실력의 멤버들끼리 공부하는 방식은 큰 도움이
+                되기 어렵습니다<br />
+                -
+                <a href="https://studysearch.co.kr/mcl/gsc/">스터디서치</a>라는
+                괜찮은 서비스가 있지만, 이는 열린 플랫폼이 아니고, 따라서 중간
+                수수료가 크게 발생합니다. 런잉은 100% 무료 오픈 플랫폼을
+                지향합니다<br />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
 {% endblock %}

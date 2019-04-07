@@ -1,53 +1,72 @@
 <div class="col-lg-4 col-md-6 mb-4">
-  <div class="card group-preview">
+  <div class="card card--group">
     <div class="img-wrapper">
-      <img class="card-img-top" src="{{ group.photo.url }}" alt="">
+      <img class="card-img-top" src="{{ group.photo.url }}" alt="" />
       <div class="card-img-overlay">
-        <h2>
-          <span class="badge badge-secondary text-white">{{ group.level }}</span>
-        </h2>
+        <span
+          class="card__badge card__badge--level badge badge-secondary text-white"
+          >{{ group.level }}</span
+        >
+        <span
+          class="card__badge card__badge--location badge badge-secondary text-white"
+          ><i class="fas fa-map-marker"></i> {{ group.location }}</span
+        >
       </div>
     </div>
     <div class="card-body text-center">
       <div class="group-heading text-center">
-        <h4>{{ group.name|truncatechars:20 }}</h4>
-        <p class="mb-0">
-          <i class="fas fa-map-marker text-secondary"></i> {{ group.location }}
-        </p>
-        <p class="mb-2">
-          <i class="far fa-calendar-alt text-secondary"></i> 시작일: {{ group.start_date }}
-        </p>
+        <h4>{{ group.name | truncatechars:20 }}</h4>
+        <div class="mb-2">
+          <i class="far fa-calendar-alt text-secondary"></i> 시작일:
+          {{ group.start_date }}
+        </div>
       </div>
-      <hr class="my-0">
+      <hr class="my-0" />
       <div class="row py-2">
         <div class="col-6">
-          <i class="fas fa-graduation-cap text-secondary"></i> 기간: {{ group.duration }}주
+          <i class="fas fa-graduation-cap text-secondary"></i> 기간:
+          {{ group.duration }}주
         </div>
         <div class="col-6">
-          <i class="fas fa-money-check text-secondary"></i> {% if group.price != 0 %}{{ group.price }}만원{% else %}무료{% endif %}
+          <i class="fas fa-money-check text-secondary"></i> 
+          {% if group.price != 0 %}
+          {{ group.price }}만원
+          {% else %}무료
+          {% endif %}
         </div>
       </div>
-      <hr class="my-0">
+      <hr class="my-0" />
       <div class="row pt-2">
         <div class="col-12">
-          <i class="fas fa-clock text-secondary"></i> {{ group.day }}, {{ group.time }}
+          <i class="fas fa-clock text-secondary"></i> {{ group.day }},
+          {{ group.time }}
         </div>
       </div>
       <div class="row pt-2 ">
         <div class="col-12">
-          <i class="fas fa-user text-secondary"></i> {{ group.members.all.count }} / {{ group.size }}
+          <i class="fas fa-user text-secondary"></i>
+          {{ group.members.all.count }} / {{ group.size }}
         </div>
       </div>
-      <hr class="my-2">
-      
+      <hr class="my-2" />
+
       {% if group.status == 'open' %}
-      <a href="{{ group.get_absolute_url }}" class="btn btn-secondary btn-block">자세히</a>
+      <a href="{{ group.get_absolute_url }}" class="btn btn-secondary btn-block"
+        >자세히</a
+      >
       {% elif group.status == 'full' %}
-      <a href="{{ group.get_absolute_url }}" class="btn btn-danger btn-block disabled">정원 초과</a>
+      <a
+        href="{{ group.get_absolute_url }}"
+        class="btn btn-danger btn-block disabled"
+        >정원 초과</a
+      >
       {% else %}
-      <a href="{{ group.get_absolute_url }}" class="btn btn-dark btn-block disabled">모집 마감</a>
+      <a
+        href="{{ group.get_absolute_url }}"
+        class="btn btn-dark btn-block disabled"
+        >모집 마감</a
+      >
       {% endif %}
-        
     </div>
   </div>
 </div>

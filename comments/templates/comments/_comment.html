@@ -1,6 +1,6 @@
-<div class="media mb-3">
-  <img src={{ comment.member.profile.photo.url }} class="mr-3 py-1" alt="...">
-  <div class="media-body">
+<div class="media comment mb-3">
+  <img src={{ comment.member.profile.photo.url }} class="comment__img mr-3 py-1" alt="...">
+  <div class="media-body comment__body">
     <h5 class="my-0">{{ comment.member.username }}</h5>
     {% for i in checked %}
       <span class="fas fa-star fa-sm"></span>
@@ -13,7 +13,7 @@
     {% if request.user == comment.member %}
       <form method="POST" action="{% url 'comments:delete' pk=comment.pk %}">{% csrf_token %}
         <input type="hidden" name="group_url" value="{{ group.get_absolute_url }}">
-        <button type="submit" id="comment-delete"><i class="far fa-lg fa-trash-alt"></i></button>
+        <button class="comment__button--delete"  type="submit"><i class="far fa-lg fa-trash-alt"></i></button>
       </form>
     {% endif %}
   </div>
